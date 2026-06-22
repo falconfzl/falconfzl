@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张璐 - GIS 高级开发工程师 | 简历</title>
+<style>
+  /* ========== Reset & Base ========== */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:16px}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:#f0f4f8;color:#1e293b;line-height:1.7;
+    -webkit-font-smoothing:antialiased
+  }
+
+  :root{
+    --deep-blue:#0a1628;
+    --navy:#0f2b46;
+    --accent:#2563eb;
+    --accent-light:#3b82f6;
+    --accent-pale:#dbeafe;
+    --gold:#f59e0b;
+    --white:#ffffff;
+    --gray-50:#f8fafc;
+    --gray-100:#f1f5f9;
+    --gray-200:#e2e8f0;
+    --gray-300:#cbd5e1;
+    --gray-400:#94a3b8;
+    --gray-500:#64748b;
+    --gray-700:#334155;
+    --gray-900:#0f172a;
+  }
+
+  /* ========== Hero Section ========== */
+  .hero{
+    background:linear-gradient(135deg,var(--deep-blue) 0%,#152440 40%,var(--navy) 100%);
+    color:var(--white);padding:64px 24px 56px;text-align:center;position:relative;overflow:hidden
+  }
+  .hero::before{
+    content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;
+    border-radius:50%;background:rgba(37,99,235,0.08);
+  }
+  .hero::after{
+    content:'';position:absolute;bottom:-100px;left:-60px;width:300px;height:300px;
+    border-radius:50%;background:rgba(37,99,235,0.05);
+  }
+  .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+  .hero-avatar{
+    width:100px;height:100px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-light));
+    display:flex;align-items:center;justify-content:center;
+    font-size:2.4rem;font-weight:700;margin:0 auto 20px;
+    box-shadow:0 8px 32px rgba(37,99,235,0.3);border:3px solid rgba(255,255,255,0.2)
+  }
+  .hero h1{font-size:2.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px}
+  .hero .subtitle{font-size:1.1rem;color:#93c5fd;margin-bottom:4px}
+  .hero .exp-badge{
+    display:inline-block;margin-top:12px;padding:6px 20px;border-radius:20px;
+    background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.35);
+    color:#fde68a;font-size:0.9rem;font-weight:500
+  }
+  .contact-row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:20px;
+    font-size:0.9rem;color:#94a3b8
+  }
+  .contact-row span{display:flex;align-items:center;gap:6px}
+
+  /* ========== Layout ========== */
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* ========== Sections ========== */
+  .section{padding:48px 0}
+  .section-alt{background:var(--white)}
+  .section-title{
+    font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:32px;
+    display:flex;align-items:center;gap:12px
+  }
+  .section-title::before{
+    content:'';width:4px;height:28px;background:var(--accent);border-radius:2px
+  }
+
+  /* ========== About ========== */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .about-card{
+    background:var(--white);border-radius:16px;padding:32px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)
+  }
+  .about-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:16px;font-weight:600}
+  .about-card p{color:var(--gray-500);line-height:1.8}
+  .info-list{list-style:none}
+  .info-list li{
+    display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-100);
+    color:var(--gray-700);font-size:0.95rem
+  }
+  .info-list li:last-child{border-bottom:none}
+  .info-list .label{color:var(--gray-400);min-width:80px;font-size:0.9rem}
+  .info-list .value{font-weight:500}
+  .salary-highlight{
+    background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e;
+    padding:2px 10px;border-radius:12px;font-weight:700;font-size:0.95rem
+  }
+
+  /* ========== Timeline ========== */
+  .timeline{position:relative;padding-left:32px}
+  .timeline::before{
+    content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--gray-200)
+  }
+  .timeline-item{position:relative;margin-bottom:36px}
+  .timeline-item:last-child{margin-bottom:0}
+  .timeline-dot{
+    position:absolute;left:-32px;top:6px;width:24px;height:24px;border-radius:50%;
+    background:var(--white);border:3px solid var(--accent);z-index:1
+  }
+  .timeline-dot.active{background:var(--accent);box-shadow:0 0 0 6px rgba(37,99,235,0.15)}
+  .timeline-card{
+    background:var(--white);border-radius:14px;padding:28px 32px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+    border-left:3px solid transparent;transition:border-color 0.3s
+  }
+  .timeline-card:hover{border-left-color:var(--accent)}
+  .timeline-header{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:6px}
+  .timeline-header .company{font-size:1.15rem;font-weight:700;color:var(--navy)}
+  .timeline-header .role{font-size:0.95rem;color:var(--accent);font-weight:500}
+  .timeline-header .date{font-size:0.85rem;color:var(--gray-400);margin-left:auto}
+  .timeline-desc{color:var(--gray-500);margin-bottom:14px;line-height:1.8;font-size:0.93rem}
+  .achieve-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .achieve-tag{
+    padding:4px 12px;border-radius:20px;background:var(--accent-pale);
+    color:var(--accent);font-size:0.82rem;font-weight:500
+  }
+
+  /* ========== Data Cards ========== */
+  .data-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .data-card{
+    background:var(--white);border-radius:16px;padding:28px 20px;text-align:center;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+    transition:transform 0.25s,box-shadow 0.25s
+  }
+  .data-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.1)}
+  .data-card .icon-box{
+    width:48px;height:48px;border-radius:12px;display:flex;align-items:center;
+    justify-content:center;margin:0 auto 16px;font-size:1.4rem
+  }
+  .data-card .icon-box.blue{background:var(--accent-pale);color:var(--accent)}
+  .data-card .icon-box.green{background:#dcfce7;color:#16a34a}
+  .data-card .icon-box.amber{background:#fef3c7;color:#d97706}
+  .data-card .icon-box.purple{background:#ede9fe;color:#7c3aed}
+  .data-card .icon-box.rose{background:#ffe4e6;color:#e11d48}
+  .data-card .number{font-size:1.75rem;font-weight:800;color:var(--navy);line-height:1.2}
+  .data-card .label{font-size:0.82rem;color:var(--gray-400);margin-top:4px}
+
+  /* ========== Skills + Radar ========== */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .radar-container{
+    background:var(--white);border-radius:16px;padding:32px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+    display:flex;flex-direction:column;align-items:center
+  }
+  .radar-container h3{font-size:1.05rem;color:var(--navy);margin-bottom:8px;text-align:center;font-weight:600}
+  .skill-tags-card{
+    background:var(--white);border-radius:16px;padding:32px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)
+  }
+  .skill-tags-card h3{font-size:1.05rem;color:var(--navy);margin-bottom:20px;font-weight:600}
+  .skill-category{margin-bottom:20px}
+  .skill-category:last-child{margin-bottom:0}
+  .skill-category .cat-title{
+    font-size:0.85rem;color:var(--accent);font-weight:600;margin-bottom:10px;
+    text-transform:uppercase;letter-spacing:0.05em
+  }
+  .skill-pills{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-pill{
+    padding:6px 16px;border-radius:20px;background:var(--gray-100);
+    color:var(--gray-700);font-size:0.85rem;font-weight:500;
+    border:1px solid var(--gray-200);transition:all 0.2s
+  }
+  .skill-pill:hover{background:var(--accent-pale);border-color:var(--accent-light);color:var(--accent)}
+
+  /* ========== Education & Certs ========== */
+  .info-row{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .edu-card,.cert-card{
+    background:var(--white);border-radius:16px;padding:32px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04)
+  }
+  .edu-card{display:flex;align-items:flex-start;gap:20px}
+  .edu-icon{
+    width:56px;height:56px;border-radius:14px;background:var(--accent-pale);
+    display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0
+  }
+  .edu-info h3{font-size:1.1rem;color:var(--navy);font-weight:700}
+  .edu-info .major{color:var(--accent);font-weight:500;margin:4px 0}
+  .edu-info .year{color:var(--gray-400);font-size:0.9rem}
+  .cert-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:16px;font-weight:600}
+  .cert-list{list-style:none}
+  .cert-list li{
+    padding:8px 0;color:var(--gray-700);font-size:0.93rem;
+    display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gray-100)
+  }
+  .cert-list li:last-child{border-bottom:none}
+  .cert-list .medal{font-size:1.1rem}
+
+  /* ========== Footer ========== */
+  .footer{
+    background:var(--deep-blue);color:var(--gray-400);text-align:center;
+    padding:32px 20px;font-size:0.85rem
+  }
+  .footer strong{color:var(--white)}
+
+  /* ========== Responsive ========== */
+  @media(max-width:768px){
+    .hero h1{font-size:1.8rem}
+    .hero{padding:48px 16px 40px}
+    .about-grid,.info-row{grid-template-columns:1fr}
+    .data-cards{grid-template-columns:repeat(2,1fr)}
+    .skills-grid{grid-template-columns:1fr}
+    .timeline{padding-left:24px}
+    .timeline-dot{left:-24px;width:20px;height:20px}
+    .timeline-card{padding:20px}
+    .section{padding:36px 0}
+    .contact-row{gap:12px;font-size:0.82rem}
+    .timeline-header .date{margin-left:0}
+  }
+  @media(max-width:480px){
+    .data-cards{grid-template-columns:1fr}
+    .hero-avatar{width:80px;height:80px;font-size:2rem}
+    .edu-card{flex-direction:column;text-align:center;align-items:center}
+  }
+  @media print{
+    body{background:#fff}
+    .hero{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .section{padding:24px 0;page-break-inside:avoid}
+    .timeline-card,.data-card,.about-card,.skill-tags-card,.radar-container,.edu-card,.cert-card{
+      box-shadow:none;border:1px solid #ddd
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-avatar">璐</div>
+    <h1>张 璐</h1>
+    <p class="subtitle">GIS 高级开发工程师 / 低空经济可视化方向</p>
+    <span class="exp-badge">12 年工作经验 · 北京</span>
+    <div class="contact-row">
+      <span>📧 zhanglu@email.com</span>
+      <span>📱 185-1802-6118</span>
+      <span>📍 中国北京</span>
+      <span>💰 期望薪资 35K-50K/月</span>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">个人简介</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>关于我</h3>
+        <p>
+          12 年 GIS 与三维可视化领域开发经验，深耕地理信息系统、三维引擎、WebGIS 前端及数据可视化方向。技术栈覆盖 C++ / C# / JavaScript / WebAssembly 全链路，熟练运用 Cesium、Three.js、OpenGL 等主流框架。近年聚焦低空经济场景，主导低空三维 GIS 平台建设，对接多地政府低空监管需求。具备从底层引擎到业务中台的全栈能力，擅长技术团队管理与项目落地。
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>基本信息</h3>
+        <ul class="info-list">
+          <li><span class="label">姓名</span><span class="value">张璐</span></li>
+          <li><span class="label">年龄</span><span class="value">34 岁</span></li>
+          <li><span class="label">学历</span><span class="value">本科 · 东北石油大学</span></li>
+          <li><span class="label">专业</span><span class="value">软件工程</span></li>
+          <li><span class="label">经验</span><span class="value">12 年（2014 年起）</span></li>
+          <li><span class="label">期望薪资</span><span class="value"><span class="salary-highlight">35K - 50K / 月</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DATA CARDS ==================== -->
+<section class="section">
+  <div class="container">
+    <div class="data-cards">
+      <div class="data-card">
+        <div class="icon-box blue">🗓️</div>
+        <div class="number">12 年</div>
+        <div class="label">GIS/三维可视化经验</div>
+      </div>
+      <div class="data-card">
+        <div class="icon-box green">🏢</div>
+        <div class="number">4 家</div>
+        <div class="label">知名企业任职经历</div>
+      </div>
+      <div class="data-card">
+        <div class="icon-box amber">🏆</div>
+        <div class="number">600W+</div>
+        <div class="label">带领 4 人团队年业绩</div>
+      </div>
+      <div class="data-card">
+        <div class="icon-box purple">🛰️</div>
+        <div class="number">6 省</div>
+        <div class="label">低空经济场景覆盖</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORK EXPERIENCE ==================== -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">工作经历</h2>
+    <div class="timeline">
+
+      <!-- Job 1: 中国四维 -->
+      <div class="timeline-item">
+        <div class="timeline-dot active"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="company">中国四维测绘技术有限公司</span>
+            <span class="role">高级前端开发</span>
+            <span class="date">2025.10 - 至今</span>
+          </div>
+          <p class="timeline-desc">
+            负责低空经济项目的核心开发，主导三维低空 GIS 平台的功能建设，包括路径规划平台、仿真平台、统计平台的产品设计与开发。深入了解地方低空政策与硬件采购标准，全流程对接低空场景下的飞行监控。已对接浙江、福建、云南、山东、青海等多个省份的低空城市监管需求，推动低空经济相关产品的业务与生态落地。
+          </p>
+          <div class="achieve-tags">
+            <span class="achieve-tag">🛩️ 低空经济平台</span>
+            <span class="achieve-tag">🗺️ 三维低空 GIS</span>
+            <span class="achieve-tag">📊 路径规划 & 仿真</span>
+            <span class="achieve-tag">🏙️ 多省城市监管对接</span>
+            <span class="achieve-tag">📋 政策 & 硬件采购</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 2: 北京尚方 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="company">北京尚方智慧清洁能源有限公司</span>
+            <span class="role">WebGIS 前端开发工程师</span>
+            <span class="date">2023.11 - 2025.08</span>
+          </div>
+          <p class="timeline-desc">
+            作为高级前端开发工程师，负责新能源规划设计平台的规划与开发。主导 AI 识别模型的前端定制与开发，优化工程师出图效果，建设三维模型可视化体系，显著提升新能源规划设计场景的数字化与可视化程度。
+          </p>
+          <div class="achieve-tags">
+            <span class="achieve-tag">⚡ 新能源规划设计平台</span>
+            <span class="achieve-tag">🤖 AI 识别模型定制</span>
+            <span class="achieve-tag">🏗️ 三维模型建设</span>
+            <span class="achieve-tag">📐 出图效果优化</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 3: 高德 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="company">高德软件有限公司</span>
+            <span class="role">WebGIS 高级开发工程师</span>
+            <span class="date">2021.09 - 2023.10</span>
+          </div>
+          <p class="timeline-desc">
+            负责高精数据编译与可视化、3D GIS 项目的架构设计与开发维护。主导路线/高精工艺编辑器的开发，完成算法后处理（Open3D / OpenCV / WebAssembly）的编译与维护。搭建 WorldBuilder 平台云端到前端全链路，实现地理信息模型资产的编辑发布与可视化编辑工具。联合算法与设计部门，通过 AI 建模技术自动化识别模型结构与纹理生成，将 LOD3+ 模型生产效率提升数千倍。
+          </p>
+          <div class="achieve-tags">
+            <span class="achieve-tag">📍 高精地图可视化</span>
+            <span class="achieve-tag">🧩 WorldBuilder 平台</span>
+            <span class="achieve-tag">🧠 AI 建模 (LOD3+)</span>
+            <span class="achieve-tag">⚙️ Open3D / OpenCV / WASM</span>
+            <span class="achieve-tag">🛠️ 工艺编辑器</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 4: 数字冰雹 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="company">北京数字冰雹信息技术有限公司</span>
+            <span class="role">图形开发</span>
+            <span class="date">2014.10 - 2021.08</span>
+          </div>
+          <p class="timeline-desc">
+            7 年图形开发经验，深度参与公司产品与技术平台的三维建设。负责 C++ 三维 GIS 引擎开发、C# 三维 Scene 引擎开发、B 端基于 Cesium 的三维 GIS 二次开发、B 端基于 Three.js 的三维 Scene 二次开发、B 端渲染平台 Streaming 开发。主导三维可视化智慧城市项目。掌握 QGIS、ArcGIS、CityEngine、STK 等专业 GIS 工具。2017 年带领 4 人团队实现 600W 年业绩，2015-2016 连续两年获公司优秀员工，后升任三维组负责人。
+          </p>
+          <div class="achieve-tags">
+            <span class="achieve-tag">🔧 C++ 三维 GIS 引擎</span>
+            <span class="achieve-tag">🌐 Cesium / Three.js</span>
+            <span class="achieve-tag">🏙️ 智慧城市可视化</span>
+            <span class="achieve-tag">👥 三维组负责人</span>
+            <span class="achieve-tag">🏆 连续 2 年优秀员工</span>
+            <span class="achieve-tag">💰 团队年业绩 600W</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SKILLS ==================== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">专业技能</h2>
+    <div class="skills-grid">
+      <!-- Radar Chart -->
+      <div class="radar-container">
+        <h3>能力雷达图</h3>
+        <svg viewBox="0 0 360 360" width="100%" height="auto" style="max-width:380px">
+          <defs>
+            <radialGradient id="areaGrad" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#2563eb" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#2563eb" stop-opacity="0.05"/>
+            </radialGradient>
+          </defs>
+          <g stroke="#e2e8f0" stroke-width="1" fill="none">
+            <polygon points="180,54 282,128 246,246 114,246 78,128"/>
+            <polygon points="180,88 258,146 230,230 130,230 102,146" opacity="0.6"/>
+            <polygon points="180,122 235,168 215,215 145,215 125,168" opacity="0.4"/>
+            <polygon points="180,156 211,182 200,200 160,200 149,182" opacity="0.25"/>
+          </g>
+          <g stroke="#cbd5e1" stroke-width="1">
+            <line x1="180" y1="180" x2="180" y2="36"/>
+            <line x1="180" y1="180" x2="300" y2="120"/>
+            <line x1="180" y1="180" x2="258" y2="264"/>
+            <line x1="180" y1="180" x2="102" y2="264"/>
+            <line x1="180" y1="180" x2="60" y2="120"/>
+          </g>
+          <!-- Data: 引擎开发 95, WebGIS 90, 三维可视化 95, AI+GIS 75, 低空经济 70, 团队管理 80 -->
+          <polygon points="180,48 288,114 252,246 114,252 78,138"
+            fill="url(#areaGrad)" stroke="#2563eb" stroke-width="2.5"/>
+          <g fill="#2563eb">
+            <circle cx="180" cy="48" r="4.5"/>
+            <circle cx="288" cy="114" r="4.5"/>
+            <circle cx="252" cy="246" r="4.5"/>
+            <circle cx="114" cy="252" r="4.5"/>
+            <circle cx="78" cy="138" r="4.5"/>
+          </g>
+          <g font-size="13" fill="#334155" font-weight="600" text-anchor="middle" font-family="PingFang SC,Microsoft YaHei,sans-serif">
+            <text x="180" y="22">GIS引擎开发</text>
+            <text x="312" y="122">WebGIS前端</text>
+            <text x="268" y="284">三维可视化</text>
+            <text x="92" y="284">团队管理</text>
+            <text x="42" y="122">AI + GIS</text>
+          </g>
+          <circle cx="180" cy="180" r="2" fill="#64748b"/>
+        </svg>
+      </div>
+      <!-- Skill Tags -->
+      <div class="skill-tags-card">
+        <h3>技术栈详情</h3>
+        <div class="skill-category">
+          <div class="cat-title">GIS & 引擎开发</div>
+          <div class="skill-pills">
+            <span class="skill-pill">C++ 三维 GIS 引擎</span>
+            <span class="skill-pill">Cesium</span>
+            <span class="skill-pill">Three.js</span>
+            <span class="skill-pill">OpenGL</span>
+            <span class="skill-pill">QGIS</span>
+            <span class="skill-pill">ArcGIS</span>
+            <span class="skill-pill">CityEngine</span>
+            <span class="skill-pill">STK</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="cat-title">前端 & 可视化</div>
+          <div class="skill-pills">
+            <span class="skill-pill">JavaScript / TS</span>
+            <span class="skill-pill">C# / WPF</span>
+            <span class="skill-pill">WebAssembly</span>
+            <span class="skill-pill">Streaming 渲染</span>
+            <span class="skill-pill">WebGIS 平台</span>
+            <span class="skill-pill">Shader 编写</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="cat-title">AI & 算法</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Open3D</span>
+            <span class="skill-pill">OpenCV</span>
+            <span class="skill-pill">AI 建模识别</span>
+            <span class="skill-pill">Segment Anything</span>
+            <span class="skill-pill">模型轻量化</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="cat-title">领域方向</div>
+          <div class="skill-pills">
+            <span class="skill-pill">低空经济 GIS</span>
+            <span class="skill-pill">智慧城市可视化</span>
+            <span class="skill-pill">新能源规划设计</span>
+            <span class="skill-pill">高精地图</span>
+            <span class="skill-pill">数据编译</span>
+            <span class="skill-pill">态势感知</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== EDUCATION & CERTS ==================== -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">教育背景 & 资质证书</h2>
+    <div class="info-row">
+      <!-- Education -->
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-info">
+          <h3>东北石油大学</h3>
+          <p class="major">软件工程 · 本科</p>
+          <p class="year">2010 - 2014</p>
+          <p style="color:#64748b;font-size:0.9rem;margin-top:8px;line-height:1.7">
+            主修方向：软件工程理论与开发实践，为后续 GIS 与三维可视化技术栈打下坚实工程基础。
+          </p>
+        </div>
+      </div>
+
+      <!-- Certifications & Awards -->
+      <div class="cert-card">
+        <h3>荣誉 & 证书</h3>
+        <ul class="cert-list">
+          <li><span class="medal">🥇</span> 尚方总经理特别奖</li>
+          <li><span class="medal">🥉</span> ACM大赛黑龙江赛区三等奖</li>
+          <li><span class="medal">🌟</span> 数字冰雹最佳新人奖</li>
+          <li><span class="medal">📈</span> 数字冰雹最佳副部</li>
+          <li><span class="medal">🤝</span> 数字冰雹最佳部长</li>
+          <li><span class="medal">🏅</span> 数字冰雹最佳产品支撑</li>
+          <li><span class="medal">🎖️</span> 2015-2016 连续两年公司优秀员工</li>
+          <li><span class="medal">📝</span> 大学英语四级（读写良好）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <p>© 2026 <strong>张璐</strong> · 12 年 GIS / 三维可视化领域深耕 · 期待在低空经济数字化浪潮中贡献技术力量</p>
+</footer>
+
+</body>
+</html>
